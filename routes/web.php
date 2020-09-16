@@ -16,5 +16,11 @@ Route::get('/', function () {
 });
 Route::get('/create', function () {
     $staff = Staff::findOrFail(1);
-    $staff->photos()->create(['path' => 'example.jpg']);
+    $staff->photos()->create(['path' => 'Edwin.jpg']);
+});
+Route::get('/read',function(){
+    $staff = Staff::findOrFail(1);
+    foreach($staff->photos as $photo){
+        echo $photo->path."<br>";
+    }
 });
