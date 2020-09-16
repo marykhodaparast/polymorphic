@@ -1,0 +1,1 @@
+This is polymorphic relationship in laravel teached by my dear teacher Edwin Diaz udemy
