@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 Route::get('/create', function () {
     $staff = Staff::findOrFail(1);
-    $staff->photos()->create(['path' => 'example.jpg',  ]);
+    $staff->photos()->create(['path' => 'example.jpg']);
 });
