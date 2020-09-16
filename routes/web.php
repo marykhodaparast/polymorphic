@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use App\Staff;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,9 +20,15 @@ Route::get('/create', function () {
     $staff = Staff::findOrFail(1);
     $staff->photos()->create(['path' => 'Edwin.jpg']);
 });
-Route::get('/read',function(){
+Route::get('/read', function () {
     $staff = Staff::findOrFail(1);
-    foreach($staff->photos as $photo){
-        echo $photo->path."<br>";
+    foreach ($staff->photos as $photo) {
+        echo $photo->path . "<br>";
     }
+});
+Route::get('/update', function () {
+    $staff = Staff::findOrFail(1);
+    $photo = $staff->photos()->whereId(1)->first();
+    $photo->path = "Updated example.jpg";
+    $photo->save();
 });
