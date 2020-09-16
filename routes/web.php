@@ -12,6 +12,7 @@
 */
 
 use App\Staff;
+use App\Photo;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,10 +33,20 @@ Route::get('/update', function () {
     $photo->path = "Updated example.jpg";
     $photo->save();
 });
-Route::get('/delete',function(){
+Route::get('/delete', function () {
     $staff = Staff::findOrFail(1);
     //$staff->photos()->delete();
     $staff->photos()->whereId(3)->delete();
     //for example you can say $staff->photos->whereName('bad_photo.jpg')->delete();
 
+});
+Route::get('/assign', function () {
+    $staff = Staff::findOrFail(1);
+    $photo = Photo::findOrFail(6);
+    $staff->photos()->save($photo);
+});
+Route::get('/unassign',function(){
+    $staff = Staff::findOrFail(1);
+    //$photo = Photo::findOrFail(6);
+    $staff->photos()->whereId(6)->update(['imageable_id'=> 0,'imageable_type' => '']);
 });
